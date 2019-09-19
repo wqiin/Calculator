@@ -1,0 +1,88 @@
+#include<stdio.h>
+#include<time.h>
+#include<stdlib.h>
+main()
+{
+	srand((unsigned)time(NULL));  //读取系统时间，产生一个种子数值
+	int c_number = 0;
+	int c_number_range;
+	int c_operator;
+	int c_operator_number;
+wq:	printf("Input the number you want:");
+	scanf("%d",&c_number);
+	getchar();
+	while(c_number)
+	{
+		c_operator_number = rand()%2+2;
+		if(c_operator_number == 2)
+		{
+				int temp_i = 2;
+				c_number_range = rand()%100+1;
+				printf("%d",c_number_range);
+				while(temp_i)
+				{
+					int temp_a = 0;
+					int temp_b = 0;
+wq2:				c_operator = rand()%4+1;
+ 					temp_a = c_number_range;
+					switch(c_operator)
+					{
+						case 1:printf("+");break;
+						case 2:printf("-");break;
+						case 3:printf("*");break;
+						case 4:
+							c_number_range = rand()%100+1;
+							temp_b =  c_number_range;
+							if(temp_a % temp_b != 0)
+								goto wq2;
+							else
+							{
+								printf("÷");
+								printf("%d",temp_b);
+								goto wq1;
+							}
+							break;//不能整除则跳会运算符生成，重新生成运算符 
+						default:break;
+					}
+					c_number_range = rand()%100+1;
+					printf("%d",c_number_range);	
+wq1:				temp_i = temp_i - 1;
+				}
+		}
+		else
+		{
+			int temp_i = 3;
+			c_number_range = rand()%100+1;
+			printf("%d",c_number_range);
+			while(temp_i)
+			{
+wq3:			c_operator = rand()%4+1;
+				int temp_a = c_number_range;
+				int temp_b = 0;
+				switch(c_operator)
+				{
+					case 1:printf("+");break;
+					case 2:printf("-");break;
+					case 3:printf("*");break;
+					case 4:
+							c_number_range = rand()%100+1;
+							temp_b =  c_number_range;
+							if(temp_a % temp_b != 0)
+								goto wq3;
+							else
+							{
+								printf("÷");
+								printf("%d",temp_b);
+								goto wq4;
+							}break;
+					default:break;
+				}
+				c_number_range = rand()%100+1;
+				printf("%d",c_number_range);	
+wq4:			temp_i = temp_i - 1;
+			}
+		}
+		printf("=\n");
+		c_number--;
+	}
+}
